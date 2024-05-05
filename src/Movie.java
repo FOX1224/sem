@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Movie {
@@ -7,7 +8,7 @@ public class Movie {
     private String movieGenre;
     private String movieTime;
     private String moviePGRating;
-    public int movieHallNumber;
+    private int movieHallNumber;
 
     public Movie() {
     }
@@ -49,20 +50,19 @@ public class Movie {
         int movieNum;
         Scanner sc = new Scanner(System.in);
         do {
-            System.out.print("\nChoose your movie: ");
-            while (!sc.hasNextInt()) {
-                System.out.println("Invalid input! Please enter NUMBERS ONLY!");
+            try {
                 System.out.print("\nChoose your movie: ");
-                sc.next();
+                movieNum = sc.nextInt();
+                if (movieNum < 1 || movieNum > movies.length) {
+                    System.out.println("Invalid selection! Please enter a number between 1 and " + movies.length);
+                } else {
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! Please enter NUMBERS ONLY!");
+                sc.next(); // Clear the invalid input
             }
-            movieNum = sc.nextInt();
-            if (movieNum < 1 || movieNum > movies.length) {
-                System.out.println("Movie No." + movieNum + " does not exist! Please enter number 1-" + movies.length);
-            } else {
-                break;
-            }
-        } while (movieNum < 1 || movieNum > movies.length);
+        } while (true);
         return movieNum;
     }
-
 }
