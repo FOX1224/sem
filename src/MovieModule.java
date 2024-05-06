@@ -19,17 +19,6 @@ public class MovieModule {
         };
     }
 
-    // Method to add new movies
-    public void addMovie(Movie movie) {
-        // Create a new array with increased size to accommodate the new movie
-        Movie[] updatedMovies = new Movie[movies.length + 1];
-        // Copy existing movies to the new array
-        System.arraycopy(movies, 0, updatedMovies, 0, movies.length);
-        // Add the new movie to the end of the array
-        updatedMovies[movies.length] = movie;
-        // Update the movies array reference to point to the new array
-        movies = updatedMovies;
-    }
 
     public void displayMovies() {
         System.out.println("\nAvailable Movies for today: ");
